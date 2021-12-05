@@ -1,36 +1,62 @@
 package com.example.three_december
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 private const val TAG = "MyTag"
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var switchFragmentButton: Button
+    lateinit var bottomNavigationMenu: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        switchFragmentButton = findViewById(R.id.switch_fragments_button)
+        bottomNavigationMenu = findViewById(R.id.bottom_navigation_menu)
+
+        bottomNavigationMenu.setOnItemSelectedListener { item ->
+            var fragment: Fragment? = null
+            when (item.itemId) {
+                R.id.fragment_1 -> {
+                    fragment = FerstFragment()
 
 
-        val startFragment = StartFragment()
-        val endFragment = EndFragment()
-
-        switchFragmentButton.setOnClickListener {
-            val fragment =
-                when (supportFragmentManager.findFragmentById(R.id.fragment_conteiner)) {
-                    is StartFragment -> endFragment
-                    is EndFragment -> startFragment
-                    else -> startFragment
                 }
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.fragment_conteiner, fragment)
-                .addToBackStack(fragment.tag)
-                .commit()
+                R.id.fragment_2 -> {
+                    fragment = SecondFragment()
+
+                }
+            }
+            replaceFragment(fragment!!)
+
+            true
+
         }
+
+        bottomNavigationMenu.selectedItemId =
+            savedInstanceState?.getInt(LAYOUT_INFLATER_SERVICE) ?: R.id.fragment_conteiner
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(LAYOUT_INFLATER_SERVICE, bottomNavigationMenu.selectedItemId)
+
+        val currentFragment = supportFragmentManager.fragments.last()
+        supportFragmentManager.putFragment(
+            outState,
+            currentFragment.javaClass.name,
+            currentFragment
+        )
+
+    }
+
+    fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_conteiner, fragment)
+            .addToBackStack(fragment.tag)
+            .commit()
     }
 }

@@ -8,4 +8,11 @@
     <string name="switch_fragment">switch_fragment</string>
     <string name="start_fragment">start_fragment</string>
     <string name="end_fragment">end_fragment</string>
+    <string name="_1_frerment">Кофе</string>
+    <string name="_2_fragment">Чай</string>
+    <string name="ferst">ferst</string>
+    <string name="second">second</string>
+    <string name="back_cafee">back_cafee</string>
+    <string name="black_cafee">чёрный кофе</string>
+    <string name="black_tia">чёрный чай</string>
 </resources>

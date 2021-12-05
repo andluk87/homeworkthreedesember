@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 
 
-class EndFragment : Fragment() {
+
+class FerstFragment : Fragment() {
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_end, container, false)
-
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_ferst, container, false)
 
 
         return view
