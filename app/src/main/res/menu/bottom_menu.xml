@@ -5,11 +5,11 @@
         android:id="@+id/fragment_1"
         android:enabled="true"
         android:icon="@drawable/cafee"
-        android:title="@string/_1_frerment"/>
+        android:title="@string/_1_frerment" />
     <item
         android:id="@+id/fragment_2"
         android:enabled="true"
         android:icon="@drawable/tia"
-        android:title="@string/_2_fragment"/>
+        android:title="@string/_2_fragment" />
 
 </menu>
